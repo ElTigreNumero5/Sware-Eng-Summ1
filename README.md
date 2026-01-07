@@ -23,10 +23,11 @@ The product should be a simple web app, available to everyone in the business, a
 ### Project management technique
 
 The [project roadmap](https://github.com/users/ElTigreNumero5/projects/4/views/4) sets out four key phases for this work
-    1. Planning
-    2. Design and prototyping
-    3. Development
-    4. Write up
+
+1. Planning
+2. Design and prototyping
+3. Development
+4. Write up
     
 In the planning phase I undertook all issues associated with the preparation of this project, including deciding what project management framework to use and implementing that framework and the tools required to utilise it. I have chosen to use a lightweight version of Scrum Agile, taking some of the useful features of this framework such as backlogs, sprints and agreed deliverables to assist in managing delivery of user requirements.
 
@@ -35,44 +36,49 @@ In the planning phase I undertook all issues associated with the preparation of 
 #### Sprint planning
 
 To deliver the outputs of subsequent phases, proper sprint planning is required. These sprints are set out as follows. Typically sprints are longer time-boxes, but for a compressed piece of work such as this and to illustrate their use, I've opted for very short sprints:
-    Sprint 1: Design thinking - empathise and define (2 days)
-        Issues:
-            User research
-            Set out empathy and mind maps
-            Create user personas
-            Identify and document key features identified in user research
-        Deliverables:
-            Figma board of user research outcomes, empathy and mind maps, user personas and key features
-    Sprint 2: Design thinking - ideate and prototype (2 days)
-        Issues:
-            Produce an oversimple app design
-            Build a wireframe prototype
-            Build a full prototype
-        Deliverables:
-            Figma prototype
-    Sprint 3: Development - front page MVP (1 day)
-        Issues:
-            Build app MVP front page
-            Build title banner
-            Build chart
-            Build page change buttons
-        Deliverables:
-            A front page for the app that contains a title banner, a chart based on dummy data, and two buttons ready for linking to data input and data viewing pages
-    Sprint 4: Development - data input page MVP (2 days)
-        Issues:
-            Start build of app MVP data input page
-            Build a calendar view for a single month (an image is fine for MVP)
-            Build monthly target display panel
-            Build set target button
-            Build set target functionality that allows user input of integer between 0 and 100 that is then captured
-            Build page change button
-        Deliverables:
-            A data input page that contains a dummy calendar image, button to link to view data page, button to adjust attendance target value, display of attendance targe value
-            Captured attendance target value
-    Sprint 5: Summative write up (3 days)
-        Issues:
-            TBC but all elements of the assignment brief
-        Deliverables:
-            As per brief
+    
+##### Sprint 1: Design thinking - empathise and define (2 days)
+* Issues:
+    * User research
+    *Set out empathy and mind maps
+    * Create user personas
+    * Identify and document key features identified in user research
+* Deliverables:
+    * Figma board of user research outcomes, empathy and mind maps, user personas and key features
+
+##### Sprint 2: Design thinking - ideate and prototype (2 days)
+* Issues:
+    * Produce an oversimple app design
+    * Build a wireframe prototype
+    * Build a full prototype
+* Deliverables:
+    * Figma prototype
+        
+##### Sprint 3: Development - front page MVP (1 day)
+* Issues:
+    * Build app MVP front page
+    * Build title banner
+    * Build chart
+    * Build page change buttons
+* Deliverables:
+    * A front page for the app that contains a title banner, a chart based on dummy data, and two buttons ready for linking to data input and data viewing pages
+        
+##### Sprint 4: Development - data input page MVP (2 days)
+* Issues:
+    * Start build of app MVP data input page
+    * Build a calendar view for a single month (an image is fine for MVP)
+    * Build monthly target display panel
+    * Build set target button
+    * Build set target functionality that allows user input of integer between 0 and 100 that is then captured
+    * Build page change button
+* Deliverables:
+    * A data input page that contains a dummy calendar image, button to link to view data page, button to adjust attendance target value, display of attendance target value
+    Captured attendance target value
+        
+##### Sprint 5: Summative write up (3 days)
+* Issues:
+    * TBC but all elements of the assignment brief
+* Deliverables:
+    * As per brief
 
 ### Tickets
