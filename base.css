@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "KodeMono";
+    src: url("KodeMono-Regular.woff2") format("woff2");
+}
+
+
+html, body {
+  height: 100%;
+}
+
+
+.desktop {
+    background-color: #A7A7A7;
+    display: grid;
+    place-items: center;
+}
+
+
+.phone {
+    background-color: #1F1F1F;
+    width: 700px;
+    height: 840px;
+}
+
+
+h1 {
+  color: #AEA4B2;
+  font-family: "KodeMono";
+  text-align: center;
+}
+
+img {
+    display: block;
+    margin: auto;  
+}
