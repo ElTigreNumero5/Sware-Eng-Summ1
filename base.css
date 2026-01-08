@@ -45,5 +45,6 @@ img {
   background-color: #404040;
   width: 487px; 
   height: 302px;
-  margin: 0 auto; 
+  margin: 0 auto;
+  border-radius: 10px;
 }
