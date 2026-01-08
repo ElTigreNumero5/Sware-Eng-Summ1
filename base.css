@@ -31,6 +31,8 @@ html, body {
 h1 {
   color: #AEA4B2;
   font-family: "KodeMono";
+  font-size: 48px;
+  font-weight: bold;
   text-align: center;
 }
 
