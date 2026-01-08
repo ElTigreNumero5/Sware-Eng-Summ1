@@ -50,3 +50,36 @@ img {
   margin: 0 auto;
   border-radius: 10px;
 }
+
+.button-row {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.button1 {
+  background-color: #535353;
+  color: #AEA4B2;
+  font-family: "KodeMono";
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  width: 229px;
+  height: 246px;
+}
+
+.button2 {
+  background-color: #535353;
+  color: #AEA4B2;
+  font-family: "KodeMono";
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  width: 229px;
+  height: 246px;
+}
