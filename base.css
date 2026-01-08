@@ -11,7 +11,7 @@ html, body {
 }
 
 
-.desktop {
+.canvas {
     background-color: #A7A7A7;
     display: grid;
     place-items: center;
