@@ -7,18 +7,84 @@
     <link rel="stylesheet" href="base.css" />
 </head>
 <body>
-    <div class="canvas">
+    <!-- Sets up the whole screen -->
+    <div class="screen_canvas">
+        <!-- Sets up only the phone app window within the whole screen-->
         <div class="phone">
-            <img 
-                src="images/dummy_att_hist.png" 
-                alt="Chart of historic attendance dummy data" 
-                width="487"
-                height="302" />
+            <!-- The chart of historic attendance %s and targets, with its own container-->
+            <div>
+                <canvas id="historic_attend_chart"></canvas>
+            </div>
+            <!-- Page title -->
             <h1>Track my attendance</h1>
+            <!-- Navigation buttons-->
             <button type="button">Input attendance</button>
             <button type="button">View attendance</button> 
         </div>
     </div>
 
 </body>
+
+<!-- BUILD THE CHART -->
+<!-- Script to  install chart.js from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- JS to then build the chart-->
+<script>
+  const ctx = document.getElementById('historic_attend_chart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Feb25', 'Mar25', 'Apr25', 'May25', 'Jun25', 'Jul25', 
+               'Aug25', 'Sep25', 'Oct25', 'Nov25', 'Dec25', 'Jan26'],
+      datasets: [{
+        label: 'Attendance %',
+        data: [65,70,80,60,60,55,40,40,60,70,75,40,60],
+        borderWidth: 1,
+        backgroundColor: '#773D98'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+            display: false
+        },
+        customCanvasBackgroundColor: {
+            color: '#404040'
+        }
+      },
+      scales: {
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: '#AEA4B2',
+            font: {
+                family: 'KodeMono',
+                size: 10
+            }
+          }
+        },
+        y: {
+          beginAtZero: true,
+          max: 100,
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: '#AEA4B2',
+            font: {
+                family: 'KodeMono',
+                size: 10
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+
 </html>
