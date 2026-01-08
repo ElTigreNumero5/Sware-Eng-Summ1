@@ -6,6 +6,8 @@
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -13,6 +15,8 @@ html, body {
     background-color: #A7A7A7;
     display: grid;
     place-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 
