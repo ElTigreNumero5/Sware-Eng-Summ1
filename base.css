@@ -11,7 +11,7 @@ html, body {
 }
 
 
-.canvas {
+.screen_canvas {
     background-color: #A7A7A7;
     display: grid;
     place-items: center;
@@ -24,16 +24,29 @@ html, body {
     background-color: #1F1F1F;
     width: 700px;
     height: 840px;
+    padding-top: 32px;
 }
 
 
 h1 {
   color: #AEA4B2;
   font-family: "KodeMono";
+  font-size: 48px;
+  font-weight: bold;
   text-align: center;
 }
 
 img {
     display: block;
     margin: auto;  
+}
+
+
+#historic_attend_chart {
+  display: block;    
+  background-color: #404040;
+  width: 487px; 
+  height: 302px;
+  margin: 0 auto;
+  border-radius: 10px;
 }

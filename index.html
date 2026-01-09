@@ -7,18 +7,113 @@
     <link rel="stylesheet" href="base.css" />
 </head>
 <body>
-    <div class="canvas">
+    <!-- Sets up the whole screen -->
+    <div class="screen_canvas">
+        <!-- Sets up only the phone app window within the whole screen-->
         <div class="phone">
-            <img 
-                src="images/dummy_att_hist.png" 
-                alt="Chart of historic attendance dummy data" 
-                width="487"
-                height="302" />
+            <!-- The chart of historic attendance %s and targets, with its own container-->
+            <div>
+                <canvas id="historic_attend_chart"></canvas>
+            </div>
+            <!-- Page title -->
             <h1>Track my attendance</h1>
+            <!-- Navigation buttons-->
             <button type="button">Input attendance</button>
             <button type="button">View attendance</button> 
         </div>
     </div>
 
 </body>
+
+<!-- BUILD THE CHART -->
+<!-- Script to  install chart.js from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- JS to then build the chart-->
+<script>
+
+    // this code requests the csv attendance data from a file in the same dir
+    fetch('f-page-attend-data.csv')  
+        .then(response => response.text())  // when fetch completes convert response to text
+        .then(text => {  // using that text
+            // strip wspace, split into array of rows, ignore first row col headings
+            const rows = text.trim().split('\n').slice(1);  
+            // empty arrays for each col, 
+            const labels = [];
+            const targets = [];
+            const attends = [];
+            // loop each row, split on commas, get each value and assign to array
+            rows.forEach(row => {
+                const [label, target, attend] = row.split(',');
+                labels.push(label);
+                targets.push(+target)
+                attends.push(+attend);
+            });
+    
+            // now build the chart with the data - needs to be within the fetch.then
+            const ctx = document.getElementById('historic_attend_chart');  // here's where it goes
+            // create a new chart
+            new Chart(ctx, {
+                type: 'bar',  // a bar chart
+                data: {
+                    labels: labels,  // y-axis is the labels data
+                    datasets: [
+                        {label: 'Attendance %', 
+                        data: attends,
+                        borderWidth: 1,
+                        backgroundColor: '#773D98'
+                        },
+                        {label: 'Target %',
+                        data: targets,
+                        type: 'line',
+                        borderColor: '#AEA4B2',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        customCanvasBackgroundColor: {
+                            color: '#404040'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#AEA4B2',
+                                font: {
+                                    family: 'KodeMono',
+                                    size: 10
+                                }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#AEA4B2',
+                                font: {
+                                    family: 'KodeMono',
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+        })
+</script>
+
 </html>
