@@ -20,7 +20,7 @@
             <h1>Track my attendance</h1>
             <!-- Navigation buttons-->
             <div class="button-row">
-                <button type="button" class="button button1">Input attendance</button>
+                <button type="button" class="button button1" onclick="window.location.assign('inputs.html')">Input attendance</button>
                 <button type="button" class="button button2">View attendance</button> 
             </div>
         </div>
@@ -28,10 +28,19 @@
 
 </body>
 
-<!-- BUILD THE CHART -->
-<!-- Script to  install chart.js from a CDN -->
+
+
+<!-- GET THE DATA, BUILD THE CHART -->
+<!-- JS to create a global var for updated target (empty for now), needed here as used in chart build -->
+<script>
+    // will hold an updated target if set
+    const targetStored = localStorage.getItem('updatedTarget');
+    const updatedTarget = targetStored !== null ? Number(targetStored) : null;  
+</script>
+
+<!-- install chart.js from a CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- JS to then build the chart-->
+<!-- JS to build the chart, from csv, and if present the updated target-->
 <script>
 
     // this code requests the csv attendance data from a file in the same dir
@@ -48,7 +57,8 @@
             rows.forEach(row => {
                 const [label, target, attend] = row.split(',');
                 labels.push(label);
-                targets.push(+target)
+                // for targets, use the user entered value if it exists, else csv val
+                targets.push(updatedTarget !== null ? updatedTarget : +target);
                 attends.push(+attend);
             });
     
