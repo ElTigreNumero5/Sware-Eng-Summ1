@@ -24,7 +24,8 @@
                 <!-- Attendance target label and value-->
                 <div class="target-info">
                     <span class="target-label">Monthly target</span>
-                    <span class="target-value">40%</span>
+                    <!-- target value needs to be read from the csv of monthly atttendance stats-->
+                    <span class="target-value">--%</span>
                 </div>
                 <!-- Navigation buttons-->
                 <button type="button" class="button button3">Set target</button>
@@ -39,5 +40,25 @@
     const canvas = document.getElementById('calendar_month');
 
 </script>
+
+
+<script>
+
+    // this code requests the csv attendance data from a file in the same dir
+    fetch('f-page-attend-data.csv')  
+        .then(response => response.text())  // when fetch completes convert response to text
+        .then(text => {  // using that text
+            // strip wspace, split into array of rows, ignore first row col headings
+            const rows = text.trim().split('\n').slice(1);  
+            // get first row of data (not headers)
+            const firstRow = rows[0].split(',').map(v => v.trim());
+            // traget is the second col of the data - get teh value
+            const targetValue = Number(firstRow[1]);
+            // apply that value in the .target-value class
+            document.querySelector('.target-value').textContent = `${targetValue}%`;
+        })
+</script>
+
+
 
 </html>
