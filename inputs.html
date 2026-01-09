@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User inputs page</title>
+    <!-- sets out where to go for styling -->
+    <link rel="stylesheet" href="base.css" />
+</head>
+<body>
+    <!-- Sets up the whole screen -->
+    <div class="screen_canvas">
+        <!-- Sets up only the phone app window within the whole screen-->
+        <div class="phone">
+            <!-- 1 month calendar with its own container-->
+            <div>
+                <canvas id="calendar_month"></canvas>
+            </div>
+            <!-- Page title -->
+            <h1>Update my attendance</h1>
+            <!-- Navigation buttons-->
+            <div class="bottom-row">
+                <button type="button" class="button3">Set target</button>
+                <button type="button" class="button4">View attendance data</button> 
+            </div>
+        </div>
+    </div>    
+</body>
+
+<!-- JS to build the calendar -->
+<script>
+    const canvas = document.getElementById('calendar_month');
+
+</script>
+
+</html>
