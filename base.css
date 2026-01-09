@@ -25,6 +25,7 @@ html, body {
     width: 700px;
     height: 840px;
     padding-top: 32px;
+    border-radius: 20px;
 }
 
 
@@ -58,7 +59,7 @@ img {
   padding-top: 100px;
 }
 
-.button1 {
+.button {
   background-color: #535353;
   color: #AEA4B2;
   font-family: "KodeMono";
@@ -71,17 +72,16 @@ img {
   height: 246px;
 }
 
-.button2 {
-  background-color: #535353;
-  color: #AEA4B2;
-  font-family: "KodeMono";
-  font-size: 32px;
-  font-weight: bold;
-  text-align: center;
-  border: none;
-  border-radius: 10px;
-  width: 229px;
-  height: 246px;
+.button3 {
+  height: 84px;
+  width: 142px;
+  font-size: 22px;
+}
+
+.button4 {
+  height: 84px;
+  width: 142px;
+  font-size: 22px;
 }
 
 
@@ -89,8 +89,44 @@ img {
   display: block;    
   background-color: #404040;
   width: 551px; 
-  height: 328px;
+  height: 500px;
   margin: 0 auto;
   border-radius: 10px;
 
+}
+
+.bottom-row {
+  width: 660px;
+  height: 100px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: max(10px);
+}
+
+.target-info {
+  background-color: #404040;
+  width: 340px;
+  height: 84px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.target-label {
+  color: #AEA4B2;
+  font-family: "KodeMono";
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+
+.target-value {
+  color: #AEA4B2;
+  font-family: "KodeMono";
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
 }
