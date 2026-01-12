@@ -21,7 +21,7 @@
             <!-- Navigation buttons-->
             <div class="button-row">
                 <button type="button" class="button button1" onclick="window.location.assign('inputs.html')">Input attendance</button>
-                <button type="button" class="button button2">View attendance</button> 
+                <button type="button" class="button button2" onclick="window.location.assign('outputs.html')">View attendance</button>
             </div>
         </div>
     </div>
@@ -61,8 +61,9 @@ Dec25,60,40
 Jan26,60,60`
 const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
 
-    // this code requests the csv attendance data from a file in the same dir
-    fetch(myNotCsv)  
+function getAttendData(url, userTarget) {
+// this function fetches the (for now) hardcoded attendance data 
+    return fetch(url) // return needed to allow chaining this and the chart build function
         .then(response => response.text())  // when fetch completes convert response to text
         .then(text => {  // using that text
             // strip wspace, split into array of rows, ignore first row col headings
@@ -75,76 +76,87 @@ const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
             rows.forEach(row => {
                 const [label, target, attend] = row.split(',');
                 labels.push(label);
-                // for targets, use the user entered value if it exists, else csv val
-                targets.push(updatedTarget !== null ? updatedTarget : +target);
+                // for targets, use the user entered value if it exists, else hardcoded val
+                targets.push(userTarget ?? +target);
                 attends.push(+attend);
             });
-    
-            // now build the chart with the data - needs to be within the fetch.then
-            const ctx = document.getElementById('historic_attend_chart');  // here's where it goes
-            // create a new chart
-            new Chart(ctx, {
-                type: 'bar',  // a bar chart
-                data: {
-                    labels: labels,  // y-axis is the labels data
-                    datasets: [
-                        {label: 'Attendance %', 
-                        data: attends,
-                        borderWidth: 1,
-                        backgroundColor: '#773D98'
-                        },
-                        {label: 'Target %',
-                        data: targets,
-                        type: 'line',
-                        borderColor: '#AEA4B2',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        pointRadius: 0
-                        }
-                    ]
+            // output the resulting data structure
+            return {labels, targets, attends};
+        });
+}
+
+
+function buildChart({labels, targets, attends}) {
+    // this function builds the chart using the data output from getAttendData()
+    const ctx = document.getElementById('historic_attend_chart');  
+    // create a new chart
+    new Chart(ctx, {
+        type: 'bar',  // a bar chart
+        data: {
+            labels: labels,  // y-axis is the labels data
+            datasets: [
+                {label: 'Attendance %', 
+                data: attends,  // attendance data
+                borderWidth: 1,
+                backgroundColor: '#773D98'
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        customCanvasBackgroundColor: {
-                            color: '#404040'
-                        }
+                {label: 'Target %',
+                data: targets,  // target data
+                type: 'line',
+                borderColor: '#AEA4B2',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                pointRadius: 0
+                }
+            ]
+        },
+        options: {  // here's where all the chart options are set
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                customCanvasBackgroundColor: {
+                    color: '#404040'
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
                     },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                color: '#AEA4B2',
-                                font: {
-                                    family: 'KodeMono',
-                                    size: 10
-                                }
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                color: '#AEA4B2',
-                                font: {
-                                    family: 'KodeMono',
-                                    size: 10
-                                }
-                            }
+                    ticks: {
+                        color: '#AEA4B2',
+                        font: {
+                            family: 'KodeMono',
+                            size: 10
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#AEA4B2',
+                        font: {
+                            family: 'KodeMono',
+                            size: 10
                         }
                     }
                 }
-            })
-        })
+            }
+        }
+    })
+}
+
+
+// call both functions, initially plugging in the var of hardcoded data
+getAttendData(myNotCsv, updatedTarget).then(buildChart);
+        
 </script>
 
 </html>
