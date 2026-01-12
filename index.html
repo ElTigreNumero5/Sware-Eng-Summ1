@@ -29,19 +29,18 @@
 </body>
 
 
+<!-- install chart.js from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- GET THE DATA, BUILD THE CHART -->
 <!-- JS to create a global var for updated target (empty for now), needed here as used in chart build -->
 <script>
-    // will hold an updated target if set
-    const targetStored = localStorage.getItem('updatedTarget');
-    const updatedTarget = targetStored !== null ? Number(targetStored) : null;  
-</script>
+// will hold an updated target if set
+const targetStored = localStorage.getItem('updatedTarget');
+const updatedTarget = targetStored !== null ? Number(targetStored) : null;  
 
-<!-- install chart.js from a CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- JS to build the chart, and if present the updated target-->
-<script>
+// build the chart, and if present the updated target
+
 // having an absolute nightmare working with a csv file, so...
 // hardcoding the inital values for now...
 // longer term this will need an internal data storage solution
@@ -61,99 +60,7 @@ Dec25,60,40
 Jan26,60,60`
 const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
 
-function getAttendData(url, userTarget) {
-// this function fetches the (for now) hardcoded attendance data 
-    return fetch(url) // return needed to allow chaining this and the chart build function
-        .then(response => response.text())  // when fetch completes convert response to text
-        .then(text => {  // using that text
-            // strip wspace, split into array of rows, ignore first row col headings
-            const rows = text.trim().split('\n').slice(1);  
-            // empty arrays for each col, 
-            const labels = [];
-            const targets = [];
-            const attends = [];
-            // loop each row, split on commas, get each value and assign to array
-            rows.forEach(row => {
-                const [label, target, attend] = row.split(',');
-                labels.push(label);
-                // for targets, use the user entered value if it exists, else hardcoded val
-                targets.push(userTarget ?? +target);
-                attends.push(+attend);
-            });
-            // output the resulting data structure
-            return {labels, targets, attends};
-        });
-}
-
-
-function buildChart({labels, targets, attends}) {
-    // this function builds the chart using the data output from getAttendData()
-    const ctx = document.getElementById('historic_attend_chart');  
-    // create a new chart
-    new Chart(ctx, {
-        type: 'bar',  // a bar chart
-        data: {
-            labels: labels,  // y-axis is the labels data
-            datasets: [
-                {label: 'Attendance %', 
-                data: attends,  // attendance data
-                borderWidth: 1,
-                backgroundColor: '#773D98'
-                },
-                {label: 'Target %',
-                data: targets,  // target data
-                type: 'line',
-                borderColor: '#AEA4B2',
-                backgroundColor: 'transparent',
-                borderWidth: 2,
-                pointRadius: 0
-                }
-            ]
-        },
-        options: {  // here's where all the chart options are set
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                customCanvasBackgroundColor: {
-                    color: '#404040'
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#AEA4B2',
-                        font: {
-                            family: 'KodeMono',
-                            size: 10
-                        }
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        color: '#AEA4B2',
-                        font: {
-                            family: 'KodeMono',
-                            size: 10
-                        }
-                    }
-                }
-            }
-        }
-    })
-}
-
-
+import { getAttendData, buildChart} from './functions.js';
 // call both functions, initially plugging in the var of hardcoded data
 getAttendData(myNotCsv, updatedTarget).then(buildChart);
         
