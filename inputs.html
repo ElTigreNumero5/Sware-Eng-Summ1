@@ -18,10 +18,18 @@
             </div>
             <!-- Page title -->
             <h1>Update my attendance</h1>
-            <!-- Navigation buttons-->
+            
+            <!-- section for target related elements and nav--> 
             <div class="bottom-row">
-                <button type="button" class="button3">Set target</button>
-                <button type="button" class="button4">View attendance data</button> 
+                <!-- Attendance target label and value-->
+                <div class="target-info">
+                    <span class="target-label">Monthly target</span>
+                    <!-- target value needs to be read from the csv of monthly atttendance stats-->
+                    <span class="target-value">--%</span>
+                </div>
+                <!-- Navigation buttons-->
+                <button type="button" class="button button3" id="set-target-btn">Set target</button>
+                <button type="button" class="button button4" onclick="window.location.assign('index.html')" >View front page</button> 
             </div>
         </div>
     </div>    
@@ -32,5 +40,50 @@
     const canvas = document.getElementById('calendar_month');
 
 </script>
+
+
+<!-- JS to build set target button click functionality -->
+<script>
+  document.getElementById('set-target-btn').addEventListener('click', () => {
+    const input = prompt('Enter your attendance target % (integer 0–100):', '');
+    if (input === null) return; // if cancelled don't do anything, leave as is
+
+    const num = Number(input);
+    // check there's an integer between 1 and 100 - alert if not
+    if (!Number.isInteger(num) || num < 0 || num > 100) {
+      alert('Please enter a whole number between 0 and 100.');
+      return;
+    }
+    // update the global var for attend target
+    updatedTarget = num;
+    // and make sure it's held locally (JS vars don't persist page to page I learned, the hard way)
+    localStorage.setItem('updatedTarget', updatedTarget);
+
+    // Set the target display
+    document.querySelector('.target-value').textContent = `${num}%`;
+  });
+</script>
+
+
+<!-- JS to build the functionality to read target value from teh csv-->
+ <!-- JS to use the stored target value - csv isn't working for what we need it to-->
+<script>
+    // this code requests the csv attendance data from a file in the same dir
+    //fetch('f-page-attend-data.csv')  
+        //.then(response => response.text())  // when fetch completes convert response to text
+        //.then(text => {  // using that text
+            // strip wspace, split into array of rows, ignore first row col headings
+            //const rows = text.trim().split('\n').slice(1);  
+            // get first row of data (not headers)
+            //const firstRow = rows[0].split(',').map(v => v.trim());
+            // traget is the second col of the data - get teh value
+            //const targetValue = Number(firstRow[1]);
+            // apply that value in the .target-value class
+            //document.querySelector('.target-value').textContent = `${targetValue}%`;
+        //})
+    document.querySelector('.target-value').textContent = `${localStorage.getItem('updatedTarget')}%`;
+</script>
+
+
 
 </html>
