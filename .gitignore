@@ -1,0 +1,30 @@
+
+# Node.js dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.*
+
+# Build output
+dist/
+build/
+
+# Jest coverage reports
+coverage/
+
+# Jest cache
+.jest/
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE settings (optional)
+.vscode/
+.idea/
