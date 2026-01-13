@@ -60,7 +60,8 @@ Dec25,60,40
 Jan26,60,60`
 const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
 
-import { getAttendData, buildChart} from './functions.js';
+// import my functions
+const { getAttendData, buildChart } = require('../functions.js');
 // call both functions, initially plugging in the var of hardcoded data
 getAttendData(myNotCsv, updatedTarget).then(buildChart);
         

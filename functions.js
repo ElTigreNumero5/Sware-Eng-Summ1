@@ -1,4 +1,4 @@
-export function getAttendData (url, userTarget) {
+const getAttendData = (url, userTarget) => {
 // this function fetches the (for now) hardcoded attendance data 
     return fetch(url) // return needed to allow chaining this and the chart build function
         .then(response => response.text())  // when fetch completes convert response to text
@@ -25,7 +25,7 @@ export function getAttendData (url, userTarget) {
 
 
 
-export function buildChart ({labels, targets, attends}) {
+const buildChart = ({labels, targets, attends}) => {
     // this function builds the chart using the data output from getAttendData()
     const ctx = document.getElementById('historic_attend_chart');  
     // create a new chart
@@ -92,5 +92,5 @@ export function buildChart ({labels, targets, attends}) {
     })
 };
 
-
-
+// export the functions
+module.exports = { getAttendData, buildChart };
