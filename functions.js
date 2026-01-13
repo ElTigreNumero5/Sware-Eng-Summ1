@@ -92,5 +92,27 @@ const buildChart = ({labels, targets, attends}) => {
     })
 };
 
+
+const attendTargetSet = () => {
+  document.getElementById('set-target-btn').addEventListener('click', () => {
+    const input = prompt('Enter your attendance target % (integer 0–100):', '');
+    if (input === null) return; // if cancelled don't do anything, leave as is
+
+    const num = Number(input);
+    // check there's an integer between 1 and 100 - alert if not
+    if (!Number.isInteger(num) || num < 0 || num > 100) {
+      alert('Please enter a whole number between 0 and 100.');
+      return;
+    }
+    // update the global var for attend target
+    updatedTarget = num;
+    // and make sure it's held locally (JS vars don't persist page to page I learned, the hard way)
+    localStorage.setItem('updatedTarget', updatedTarget);
+
+    // Set the target display
+    document.querySelector('.target-value').textContent = `${num}%`;
+  });
+};
+
 // export the functions
-module.exports = { getAttendData, buildChart };
+export { getAttendData, buildChart, attendTargetSet };

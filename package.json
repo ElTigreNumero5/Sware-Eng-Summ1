@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This repo holds code and files for the Software Engineering module summative 1 assessement. Primarily this is an assessment response, but it's also a real project with real business value potential. Broadly this work requires proposing a product, planning the project that will create it, designing the product (including a prototype), building a minimum viable product, using test driven development, adding features gradually, writing user and technical documentation, keeping documentation up to date through use of ticketing, branches and pull requests, and finally evaluating the latest version of the product.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest"
   },

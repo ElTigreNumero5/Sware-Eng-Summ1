@@ -1,5 +1,5 @@
 // import my functions
-const { getAttendData, buildChart } = require('../functions.js');
+import { getAttendData, buildChart, attendTargetSet } from '../functions.js';
 
 // set vars needed across multiple tests
 // need to provide similar sort of data as the getAttendData function (same cols, but can be shorter)
@@ -10,12 +10,16 @@ const csvStr = `month_year,target,attendance_pc
 // and convert it to text in the same way
 const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
 
+
+
+
+// ********************************************************************************
 // smoke test
 test('when pressed to attest is there Jest test quest success?', () => {
     expect(2-1).toBe(1);
 })
 
-
+// ********************************************************************************
 // full testing
 describe('tests all functions', () => {
     test('that getAttendData function is not undefined', () => {
@@ -74,10 +78,8 @@ describe('tests all functions', () => {
         });
     });
 
-
-
     // test that the outputs arrays don't contain invalid data
-    test('that getAttendData function returns arrays with valid data types', () => {
+    test('that getAttendData function dont return arrays with invalid data types 1', () => {
         // can make more robust by checking don't have a wrong dtype - still not perfect, but better
         return expect(getAttendData(myNotCsv, 60)).resolves.toEqual({
             labels: expect.not.arrayContaining([expect.any(Number)]),
@@ -85,5 +87,29 @@ describe('tests all functions', () => {
             attends: expect.not.arrayContaining([expect.any(String)]),
         });
     });
+    test('that getAttendData function dont return arrays with invalid data types 2', () => {
+        // can make more robust by checking don't have a wrong dtype - still not perfect, but better
+        return expect(getAttendData(myNotCsv, -500)).resolves.toEqual({
+            labels: expect.not.arrayContaining([expect.any(Number)]),
+            targets: expect.not.arrayContaining([expect.any(String)]),
+            attends: expect.not.arrayContaining([expect.any(String)]),
+        });
+    });
+    test('that getAttendData function dont return arrays with invalid data types 3', () => {
+        // can make more robust by checking don't have a wrong dtype - still not perfect, but better
+        return expect(getAttendData(myNotCsv, 10568)).resolves.toEqual({
+            labels: expect.not.arrayContaining([expect.any(Number)]),
+            targets: expect.not.arrayContaining([expect.any(String)]),
+            attends: expect.not.arrayContaining([expect.any(String)]),
+        });
+    });
 
+
+    // test the build chart function - this only needs to be super lightweight
+    test('that buildChart function does stuff - come back to this later', () => {
+    });
+
+
+
+    // test the attendTargetSet() function
 })

@@ -34,36 +34,37 @@
 
 <!-- GET THE DATA, BUILD THE CHART -->
 <!-- JS to create a global var for updated target (empty for now), needed here as used in chart build -->
-<script>
-// will hold an updated target if set
-const targetStored = localStorage.getItem('updatedTarget');
-const updatedTarget = targetStored !== null ? Number(targetStored) : null;  
+<script type="module">
 
-// build the chart, and if present the updated target
+    // import my functions
+    import { getAttendData, buildChart } from 'functions.js';
+    // will hold an updated target if set
+    const targetStored = localStorage.getItem('updatedTarget');
+    const updatedTarget = targetStored !== null ? Number(targetStored) : null;  
 
-// having an absolute nightmare working with a csv file, so...
-// hardcoding the inital values for now...
-// longer term this will need an internal data storage solution
-const csvStr = `month_year,target,attendance_pc
-Jan25,60,65
-Feb25,60,70
-Mar25,60,80
-Apr25,60,60
-May25,60,60
-Jun25,60,55
-Jul25,60,40
-Aug25,60,40
-Sep25,60,60
-Oct25,60,70
-Nov25,60,75
-Dec25,60,40
-Jan26,60,60`
-const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
+    // build the chart, and if present the updated target
 
-// import my functions
-const { getAttendData, buildChart } = require('../functions.js');
-// call both functions, initially plugging in the var of hardcoded data
-getAttendData(myNotCsv, updatedTarget).then(buildChart);
+    // having an absolute nightmare working with a csv file, so...
+    // hardcoding the inital values for now...
+    // longer term this will need an internal data storage solution
+    const csvStr = `month_year,target,attendance_pc
+    Jan25,60,65
+    Feb25,60,70
+    Mar25,60,80
+    Apr25,60,60
+    May25,60,60
+    Jun25,60,55
+    Jul25,60,40
+    Aug25,60,40
+    Sep25,60,60
+    Oct25,60,70
+    Nov25,60,75
+    Dec25,60,40
+    Jan26,60,60`
+    const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
+
+    // call both functions, initially plugging in the var of hardcoded data
+    getAttendData(myNotCsv, updatedTarget).then(buildChart);
         
 </script>
 
