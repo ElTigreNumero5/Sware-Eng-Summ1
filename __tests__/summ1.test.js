@@ -1,3 +1,4 @@
+
 // import my functions
 const { getAttendData, buildChart, attendTargetSet } = require('../functions.js');
 
@@ -105,11 +106,11 @@ describe('tests all functions', () => {
     });
 
 
-    // test the build chart function - this only needs to be super lightweight
-    test('that buildChart function does stuff - come back to this later', () => {
-    });
+    // test the build chart function
+
 
 
 
     // test the attendTargetSet() function
+    
 })
