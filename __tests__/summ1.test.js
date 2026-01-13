@@ -1,5 +1,5 @@
 // import my functions
-import { getAttendData, buildChart, attendTargetSet } from '../functions.js';
+const { getAttendData, buildChart, attendTargetSet } = require('../functions.js');
 
 // set vars needed across multiple tests
 // need to provide similar sort of data as the getAttendData function (same cols, but can be shorter)

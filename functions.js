@@ -115,4 +115,4 @@ const attendTargetSet = () => {
 };
 
 // export the functions
-export { getAttendData, buildChart, attendTargetSet };
+module.exports = { getAttendData, buildChart, attendTargetSet };
