@@ -23,8 +23,15 @@ test('when pressed to attest is there Jest test quest success?', () => {
 // ********************************************************************************
 // full testing
 
+
 // TDD - attendPC
 describe('tests the attendPC function', () => {
+    // test red becuase there's nothing built yet
+    test('that function is defined', () => {
+        expect(attendPC).toBeDefined();
+    })
+    // test green after an empty function defined
+
     // test red because nothing returned by function
     // test still green after update when function requires param inputs 
     test('That function returns a number between 0 and 100', () => {
@@ -52,6 +59,12 @@ describe('tests the attendPC function', () => {
 
 // TDD - days left
 describe('tests the daysLeft function', () => {
+    // test red becuase there's nothing built yet
+    test('that function is defined', () => {
+        expect(daysLeft).toBeDefined();
+    })
+    // test green after an empty function defined
+    
     // test red becuase daysLeft() doesn't do anything
     // later test red because this test doesn't pass any params and the function now needs them
     test('that outputs a number >= 0', () => {
@@ -78,11 +91,9 @@ describe('tests the daysLeft function', () => {
 
 
 describe('tests getAttendData function', () => {
-    test('that function is not undefined', () => {
-        // test function is defined when passing valid data and anything or nothing for target val
-        expect(getAttendData(myNotCsv, undefined)).toBeDefined();
-        expect(getAttendData(myNotCsv, 60)).toBeDefined();
-        expect(getAttendData(myNotCsv, '55')).toBeDefined();
+    test('that function is defined', () => {
+        // test function is defined
+        expect(getAttendData).toBeDefined();
     });
 
     // now test that the outputs are arrays - resolve needed becuase of fetch() .then() in formula
@@ -161,8 +172,17 @@ describe('tests getAttendData function', () => {
     });
 })
 
-    // test the build chart function - though this is very low risk, probably not required
-
+    // test the build chart function - though this is very low risk, probably not really required
+describe('Tests the buildChart function', () => {
+    test('that function is defined', () => {
+        expect(buildChart).toBeDefined();
+    })
+})
 
     // test the attendTargetSet() function
-    
+describe('Tests the attendTargetSet function', () => {
+    test('that function is defined', () => {
+        expect(attendTargetSet).toBeDefined();
+    })
+    // further testing should include mocking this functionality
+})
