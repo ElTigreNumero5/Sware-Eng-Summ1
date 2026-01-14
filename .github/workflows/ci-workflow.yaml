@@ -14,7 +14,7 @@ jobs:  # specifies what the workflow will do
 
     steps:  # what the workflow does
       - name: check out code  # checks out repo to the GH runner so it can test it
-        uses: actions/checkout@v6  # checkout is a github action, v6 is the most recent iteration
+        uses: actions/checkout@v4  # checkout is a github action, v4 is the most recent iteration
 
       - name: set up Node  # needs to install node and jest to the runner
         uses: actions/setup-node@v6  # v6 latest version of this GH action
