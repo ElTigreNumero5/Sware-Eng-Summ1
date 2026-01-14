@@ -1,3 +1,17 @@
+const attendPC = (workDays, attendDays) => {
+    if (workDays == 0) return 0;
+    const attendPercent = ((attendDays / workDays) * 100);
+    return attendPercent;
+}
+
+
+// function to work out number of days required to hit target
+const daysLeft = ( attendDays, workDays, targetPC ) => {
+    const targetDays = workDays * (targetPC / 100);
+    const daysToHit = targetDays - attendDays;
+    return daysToHit;
+}
+
 const getAttendData = (url, userTarget) => {
 // this function fetches the (for now) hardcoded attendance data 
     return fetch(url) // return needed to allow chaining this and the chart build function
@@ -115,4 +129,4 @@ const attendTargetSet = () => {
 };
 
 // export the functions
-module.exports = { getAttendData, buildChart, attendTargetSet };
+module.exports = { attendPC, daysLeft, getAttendData, buildChart, attendTargetSet };
