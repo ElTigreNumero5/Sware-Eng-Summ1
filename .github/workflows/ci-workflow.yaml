@@ -1,3 +1,5 @@
+name: ci-workflow
+
 on:  # defines what behaviour triggers this workflow
   push:  # runs on any commit 
     branches:
