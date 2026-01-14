@@ -1,0 +1,26 @@
+on:  # defines what behaviour triggers this workflow
+  push:  # runs on any commit 
+    branches:
+    - '**'  # double star means "any"
+  pull_request:  # also runs on a PR merge to main
+    branches:
+    - main
+
+jobs:  # specifies what the workflow will do
+  test:  # this is the test workflow
+    runs-on: ubuntu-latest  # can be any OS. This will use a github "runner", a type of VM
+
+    steps:  # what the workflow does
+      - name: check out code  # checks out repo to the GH runner so it can test it
+        uses: actions/checkout@v6  # checkout is a github action, v6 is the most recent iteration
+
+      - name: set up Node  # needs to install node and jest to the runner
+        uses: actions/setup-node@v6  # v6 latest version of this GH action
+        with:
+          node-version: 24.12.0  # this is the version i've been using so I know it works
+
+      - name: install dependencies
+        run: npm install  # runner needs all depedencies set up to be able to use node/jest
+
+      - name: run tests  # finally, run the testing suite
+        run: npm test  # same command as in the terminal when running manually
