@@ -45,7 +45,7 @@
 <!-- JS to build set target button click functionality -->
 <script>
 
-function attendTargetSet() {
+const attendTargetSet = () => {
   document.getElementById('set-target-btn').addEventListener('click', () => {
     const input = prompt('Enter your attendance target % (integer 0–100):', '');
     if (input === null) return; // if cancelled don't do anything, leave as is
