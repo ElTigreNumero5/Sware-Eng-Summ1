@@ -7,9 +7,9 @@ const attendPC = (workDays, attendDays) => {
 
 // function to work out number of days required to hit target
 const daysLeft = ( attendDays, workDays, targetPC ) => {
-    const targetDays = workDays * (targetPC / 100);
-    const daysToHit = targetDays - attendDays;
-    return daysToHit;
+        const targetDays = workDays * (targetPC / 100);
+        const daysToHit = Math.ceil(targetDays - attendDays);
+        return daysToHit;
 }
 
 const getAttendData = (url, userTarget) => {
@@ -34,7 +34,7 @@ const getAttendData = (url, userTarget) => {
             // output the resulting data structure
             return {labels, targets, attends};
         });
-};
+}
 
 
 
@@ -104,7 +104,7 @@ const buildChart = ({labels, targets, attends}) => {
             }
         }
     })
-};
+}
 
 
 const attendTargetSet = () => {
@@ -124,9 +124,9 @@ const attendTargetSet = () => {
     localStorage.setItem('updatedTarget', updatedTarget);
 
     // Set the target display
-    document.querySelector('.target-value').textContent = `${num}%`;
+    document.querySelector('.value.target').textContent = `${num}%`;
   });
-};
+}
 
 // export the functions
 module.exports = { attendPC, daysLeft, getAttendData, buildChart, attendTargetSet };
