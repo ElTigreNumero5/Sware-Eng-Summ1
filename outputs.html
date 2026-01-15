@@ -59,8 +59,8 @@
 <!-- JS to calculate number of target days left for display -->
 <script>
     const daysLeft = ( attendDays, workDays, targetPC ) => {
-        const targetDays = workDays * (targetPC / 100);
-        const daysToHit = Math.ceil(targetDays - attendDays);
+        const targetDays = Math.ceil(workDays * (targetPC / 100));
+        const daysToHit = targetDays - attendDays;
         return daysToHit;
     }
 
