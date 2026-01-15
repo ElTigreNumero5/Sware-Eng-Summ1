@@ -1,65 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front page</title>
-    <!-- sets out where to go for styling -->
-    <link rel="stylesheet" href="base.css" />
-</head>
-<body>
-    <!-- Sets up the whole screen -->
-    <div class="screen_canvas">
-        <!-- Sets up only the phone app window within the whole screen-->
-        <div class="phone">
-            <!-- The chart of historic attendance %s and targets, with its own container-->
-            <div>
-                <canvas id="historic_attend_chart"></canvas>
-            </div>
-            <!-- Page title -->
-            <h1>Track my attendance</h1>
-            <!-- Navigation buttons-->
-            <div class="button-row">
-                <button type="button" class="button button1" onclick="window.location.assign('inputs.html')">Input attendance</button>
-                <button type="button" class="button button2" onclick="window.location.assign('outputs.html')">View attendance</button>
-            </div>
-        </div>
-    </div>
-
-</body>
+const attendPC = (workDays, attendDays) => {
+    if (workDays == 0) return 0;
+    const attendPercent = ((attendDays / workDays) * 100);
+    return attendPercent;
+}
 
 
-
-<!-- GET THE DATA, BUILD THE CHART -->
-<!-- JS to create a global var for updated target (empty for now), needed here as used in chart build -->
-<script>
-    // will hold an updated target if set
-    const targetStored = localStorage.getItem('updatedTarget');
-    const updatedTarget = targetStored !== null ? Number(targetStored) : null;  
-</script>
-
-<!-- install chart.js from a CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- JS to build the chart, and if present the updated target-->
-<script>
-// having an absolute nightmare working with a csv file, so...
-// hardcoding the inital values for now...
-// longer term this will need an internal data storage solution
-const csvStr = `month_year,target,attendance_pc
-Jan25,60,65
-Feb25,60,70
-Mar25,60,80
-Apr25,60,60
-May25,60,60
-Jun25,60,55
-Jul25,60,40
-Aug25,60,40
-Sep25,60,60
-Oct25,60,70
-Nov25,60,75
-Dec25,60,40
-Jan26,60,60`
-const myNotCsv = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvStr);
+// function to work out number of days required to hit target
+const daysLeft = ( attendDays, workDays, targetPC ) => {
+    const targetDays = workDays * (targetPC / 100);
+    const daysToHit = targetDays - attendDays;
+    return daysToHit;
+}
 
 const getAttendData = (url, userTarget) => {
 // this function fetches the (for now) hardcoded attendance data 
@@ -83,7 +34,9 @@ const getAttendData = (url, userTarget) => {
             // output the resulting data structure
             return {labels, targets, attends};
         });
-}
+};
+
+
 
 
 const buildChart = ({labels, targets, attends}) => {
@@ -151,12 +104,29 @@ const buildChart = ({labels, targets, attends}) => {
             }
         }
     })
-}
+};
 
 
-// call both functions, initially plugging in the var of hardcoded data
-getAttendData(myNotCsv, updatedTarget).then(buildChart);
-        
-</script>
+const attendTargetSet = () => {
+  document.getElementById('set-target-btn').addEventListener('click', () => {
+    const input = prompt('Enter your attendance target % (integer 0–100):', '');
+    if (input === null) return; // if cancelled don't do anything, leave as is
 
-</html>
+    const num = Number(input);
+    // check there's an integer between 1 and 100 - alert if not
+    if (!Number.isInteger(num) || num < 0 || num > 100) {
+      alert('Please enter a whole number between 0 and 100.');
+      return;
+    }
+    // update the global var for attend target
+    updatedTarget = num;
+    // and make sure it's held locally (JS vars don't persist page to page I learned, the hard way)
+    localStorage.setItem('updatedTarget', updatedTarget);
+
+    // Set the target display
+    document.querySelector('.target-value').textContent = `${num}%`;
+  });
+};
+
+// export the functions
+module.exports = { attendPC, daysLeft, getAttendData, buildChart, attendTargetSet };
