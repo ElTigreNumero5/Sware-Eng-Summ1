@@ -7,9 +7,9 @@ const attendPC = (workDays, attendDays) => {
 
 // function to work out number of days required to hit target
 const daysLeft = ( attendDays, workDays, targetPC ) => {
-        const targetDays = workDays * (targetPC / 100);
-        const daysToHit = Math.ceil(targetDays - attendDays);
-        return daysToHit;
+    const targetDays = Math.ceil(workDays * (targetPC / 100));
+    const daysToHit = targetDays - attendDays;
+    return daysToHit;
 }
 
 const getAttendData = (url, userTarget) => {
