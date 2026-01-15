@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outputs page</title>
+    <!-- sets out where to go for styling -->
+    <link rel="stylesheet" href="base.css" />
+</head>
+<body>
+    <!-- Sets up the whole screen -->
+    <div class="screen_canvas">
+        <!-- Sets up only the phone app window within the whole screen-->
+        <div class="phone">
+            <!-- Page title -->
+            <h1>Show my attendance</h1>
+
+            <!-- Attendance target label and value-->
+            <div class="info-card">
+                <span class="label">Monthly target</span>
+                <!-- target value needs to be read from the csv of monthly atttendance stats-->
+                <span class="value target">--%</span>
+            </div>
+
+            <!-- Working days label and value-->
+            <div class="info-card">
+                <span class="label">Available working days in month</span>
+                <span class="value working">20</span>
+            </div>
+
+            <!-- Attendance so far needed label and value-->
+            <div class="info-card">
+                <span class="label">Number of days attended in month</span>
+                <span class="value attend">4</span>
+            </div>
+
+            <!-- Attendance days needed label and value-->
+            <div class="info-card">
+                <span class="label">Days left to hit target</span>
+                <span class="value days">--</span>
+            </div>
+           
+            <!-- section for nav--> 
+            <div class="bottom-row">
+                <!-- Navigation buttons-->
+                <button type="button" class="button button5" onclick="window.location.assign('index.html')" >View front page</button> 
+                <button type="button" class="button button6" onclick="window.location.assign('inputs.html')">Input attendance</button>
+            </div>
+
+        </div>
+    </div>
+
+<!-- JS to use the stored target value -->
+<script>
+    useTarget = `${localStorage.getItem('updatedTarget')}`
+    document.querySelector('.value.target').textContent = `${useTarget}%`;
+</script>
+
+<!-- JS to calculate number of target days left for display -->
+<script>
+    const daysLeft = ( attendDays, workDays, targetPC ) => {
+        const targetDays = workDays * (targetPC / 100);
+        const daysToHit = Math.ceil(targetDays - attendDays);
+        return daysToHit;
+    }
+
+    outputDaysLeft = daysLeft(4,20,useTarget);
+    document.querySelector('.value.days').textContent = outputDaysLeft;
+</script>
