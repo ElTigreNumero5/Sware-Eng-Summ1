@@ -57,6 +57,7 @@ The function is initialised on page load, and operates when the “Set target”
 This function calculates and outputs the number of days needed to hit the attendance target in the current month, based on the number of working days available in the given month, the attendance target percentage provided by the user, and the number of attendances that have already taken place in the given month. 
 
 #### Input parameters:
+
 `attendDays` The number of days of attendance that have taken place in the month
 
 ` workDays` The number of working days available in the month
@@ -75,6 +76,7 @@ The function is called by the outputs.html page and uses the output value to pop
 CSS is used to style each page, and this style sheet is contained in a single file `base.css`. Some classes may occur in isolation and so have their own allocated characteristics. Others, which share certain characteristics such as colour, font, font size, font colour, etc., share a class definition, for example buttons. Variations to this class are specified for individual occurrences. 
 
 E.g. the `.button` class:
+
 `.button {
   background-color: #535353;
   color: #AEA4B2;
@@ -88,7 +90,9 @@ E.g. the `.button` class:
   height: 246px;
 }
 `
+
 And the variation `.button3`:
+
 `.button3 {
   height: 84px;
   width: 142px;
@@ -98,43 +102,29 @@ And the variation `.button3`:
 
 The main font used in the app is [Kode Mono]( https://kodemono.com/?char=A&weight=400), which can be downloaded from the [font’s GitHub repo]( https://github.com/isaozler/kode-mono).
 
+## How to run the app locally
+
+There are a number of methods of running this app locally, but it is not simply a case of downloading all the files and opening the front page, which would result in several issues. Here are described specific steps for one method of ensuring successful local operation.
+
+- Clone the repo
+    - Follow steps for [cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository)
+    - Clone [this app's repo](https://github.com/ElTigreNumero5/Sware-Eng-Summ1) to your chosen local working directory.
+- Open Visual Studio Code
+    - Install if not already installed - [free download here](https://code.visualstudio.com/download)
+    - Install the extension Live Server by Ritwick Dey, if not already installed
+- Open `index.html` with Live Server
+    - Right click on the file and select "Open with Live Server"
+
 
 ## Testing
 
+This project uses Node and Jest to run its testing suite and the unit testing script is found in `.\__tests__\summ1.test.js`. Follow these instructions for running local testing.
 
+- Install Node by following the install instructions given on the [Node JS download page](https://nodejs.org/en/download)
+- Install Jest by following the install instructions given on the [Jest getting started page](https://jestjs.io/docs/getting-started)
+- Open a command line terminal in VS Code
+- From the command line, navigate to the working directory containing this cloned repo
+- Set the path to the location of your Node install
+- Enter `npm test` to run the testing suite
 
-## Requirements
-
-A post-it board of user responses to user research interview questions is available [here]( https://whiteboard.cloud.microsoft/me/whiteboards/p/c3BvOmh0dHBzOi8vZWR1Y2F0aW9uZ292dWstbXkuc2hhcmVwb2ludC5jb20vcGVyc29uYWwvbWF0dF9qYWdvX2VkdWNhdGlvbl9nb3ZfdWs%3D/b!ijphha8uyEC_vGu5TYrFeb3QKcIliVdGmXbkSLjO18TGc0K-bSH8RqP8U9wzMTyL/01OQOGKWL7DGROZN6O6ZH3YTNWKPIWTQW5). The board is not publicly accessible to anyone outside of my organisation, so screen shots of each batch of each question and responses is found below.
-
-Section: Currently we…
- 
- 
- 
-
-Section: These things hurt:
- 	  
-
-Section: This is what we want
- 
- 
-
-
-Section: Here’s how things vary for users
- 
- 
-
-Section: Feature priority…
- 
- 
-
-
-Section: Will people actually use it…
- 
- 
- 
-
-Design and ideation
-Empathy maps, user personas, wireframe and prototype for this project can all be found on these Figma boards:
-- [Attendance tracker: plan, empathise, design]( https://www.figma.com/design/uztRTxsJzu00kpS4OySQiY/Attendance-Planner?node-id=0-1)
-- [Attendance tracker: Mobile prototype]( https://www.figma.com/design/uztRTxsJzu00kpS4OySQiY/Attendance-Planner?node-id=1-2)
+! IMPORTANT NOTE !: unit testing runs using a dedicated `functions.js` file, rather than the functions that are used in the html files. This is a fundamental weakness of this app, with duplication of code risking errors, and testing not actually taking place on the code being used to run the app.
