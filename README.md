@@ -38,13 +38,13 @@ To define the problem clearly, I summarised responses in a generalised mind map,
 
 I identified three key user identities, who expressed differing ways of working, stressors and needs. 
 <p align="center">
-  <img src="./images/upersona_jennie.png" alt="User persona" width="700">
+  <img src="./images/upersona_jennie.png" alt="User persona" width="800">
 </p>
 <p align="center">
-  <img src="./images/upersona_jordi.png" alt="User persona" width="700">
+  <img src="./images/upersona_jordi.png" alt="User persona" width="800">
 </p>
 <p align="center">
-  <img src="./images/upersona_juri.png" alt="User persona" width="700">
+  <img src="./images/upersona_juri.png" alt="User persona" width="800">
 </p>
  
 ### Ideate
@@ -113,40 +113,61 @@ Good ticket writing is important to capture and convey the right quantity and qu
 ## MVP
 
 The minimum viable product (MVP) demonstrates some of the key functionality and features required by users. The development process was undertaken in two planned sprints and one bonus unplanned one, and broadly page by page. First, I developed the app’s front page. I wrote an HTML structure to define the elements on the page, JavaScript to handle the dynamic data-driven functionality of the application and CSS to set the position and style of all elements. This included title, navigation buttons, and graph of historic attendance percentages based on data and target percentage driven by a user entered value from the inputs page. 
- 
+<p align="center">
+  <img src="./images/mvp_front45.png" alt="App front page with target set at 45%" width="400">
+</p>
 
 I built the user inputs page, including title, navigation buttons, placeholder for a calendar and specific attendance data entering functionality, display of the user entered attendance target value, and functionality to set that same value. This concluded the planned MVP, simply an app with a chart where the user can change a key value to adjust their attendance target, which would then be displayed on a chart. 
-   
+<p align="center">
+  <img src="./images/mvp_set_target.png" alt="App set target user input box" width="400">
+  <img src="./images/mvp_front20.png" alt="App front page with target set at 20%" width="400">
+</p>
 
 I added a third page of attendance related outputs, including a key user requirement to show the number of days of attendance required, calculated functionally from a hardcoded number of working days in the month, the variable user entered attendance target and a hardcoded number of days attended.
- 
+<p align="center">
+  <img src="./images/mvp_outputs.png" alt="App outputs page" width="400">
+</p>
 
 
 ## Test-driven development, continuous integration and continuous deployment
 
 [Test-driven development](https://learning.oreilly.com/library/view/test-driven-development/0321146530/) (TDD) relies on writing a failing unit test, then producing minimal code to pass the test, and repeating the process until the component is successfully built. For this product, TDD was used in the production of several of [the functions](https://github.com/ElTigreNumero5/Sware-Eng-Summ1/blob/4dee39a56ceee7fdbf26ae049c657e0756317278/functions.js). For example, the `attendPC` function is as follows.
- 
+<p align="center">
+  <img src="./images/tdd_function.png" alt="A function written in JavaScript" width="450">
+</p>
 
 I used [Node]( https://nodejs.org/en) and [Jest](https://jestjs.io/) to build and run [my testing suite](https://github.com/ElTigreNumero5/Sware-Eng-Summ1/blob/4dee39a56ceee7fdbf26ae049c657e0756317278/__tests__/summ1.test.js). Initially there was no function and no code. The first JS test checks that a function called `attendPC` is defined. On first run, that test failed (was red). I wrote just enough code to pass the test (go green) - simply defining an empty function. The next test checks that the function outputs a number between zero and 100. This test passed by adding `return 10` to the function. Later tests increased complexity and specificity, and required earlier tests to be updated, for example when adding parameters to the function, some earlier tests failed and so needed editing. 
- 
+<p align="center">
+  <img src="./images/tdd_jest_test.png" alt="A test written in JavaScript" width="800">
+</p>
 
 The test suite is minimal and will continue to be updated e.g. to test variable inputs and as the app evolves, but for the MVP where most test values are currently hardcoded, all tests pass and the code can be deemed to be usable.
- 
+<p align="center">
+  <img src="./images/tdd_success.png" alt="Successful test outputs" width="240">
+</p>
 
 I implemented continuous integration (CI) via GitHub actions. I created a workflow action triggered whenever a commit is made to any branch, or merge to main. This runs the test suite and provides the results with commit details in GitHub. It is therefore possible to understand if code is working correctly as code is written, allowing errors to be fixed as soon as they appear.
- 
+<p align="center">
+  <img src="./images/tdd_ci.png" alt="Github confirmation of successful CI workflow" width="550">
+</p>
 
 I implemented continuous deployment (CD) via a GitHub actions workflow. This is triggered by the CI workflow, but only when that CI workflow itself is triggered by a PR merge to main. The CD workflow then only runs after testing runs on a PR merge to main. It is also set up to only carry out its tasks if the CI workflow is successful, i.e. only if all Jest tests pass. Assuming successful tests, the CD workflow builds the app and deploys it to GitHub Pages. In this way, any time a branch is successfully merged to main, the deployed app itself is updated, ensuring it automatically remains current.
- 
+<p align="center">
+  <img src="./images/tdd_cd.png" alt="Details of deployments" width="800">
+</p>
 
 
 ## VS Code and GitHub – adding MVP features gradually
 
 Code and files for this work are contained within a [Git repository]( https://github.com/ElTigreNumero5/Sware-Eng-Summ1). Coding development work was undertaken in locally in Visual Studio (VS) Code. I cloned the remote repo to my local environment to allow synchronisation of files between the local and remote environments. The MVP was developed one issue and one sprint at a time. At the start of each sprint, all issues for that sprint were available in the *Ready* column, and one by one they were moved into *In progress*. 
- 
+<p align="center">
+  <img src="./images/branches.png" alt="Repo branches" width="800">
+</p>
 
 Commits to branches were made regularly, whenever meaningful progress was achieved, to ensure capturing of that progress and that rolling back would be possible. When completed satisfactorily with stated deliverables achieved and the definition of done met, a pull request was created to merge changes to the branch into the main repo. Initially I assigned one of my team as a reviewer of my PRs to ensure code was appropriate and to seek feedback, though as time became tight I later simply merged without review.
- 
+<p align="center">
+  <img src="./images/pull_requests.png" alt="Pull requests" width="800">
+</p>
 
 In this way, features were added as they were completed, iteratively, rather than providing a single, finished release once everything was completed, in line with the [Agile principles](https://agilealliance.org/agile101/12-principles-behind-the-agile-manifesto/) of “working software is the primary measure of progress” and “deliver working software frequently”.
 
