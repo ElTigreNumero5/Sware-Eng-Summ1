@@ -25,23 +25,46 @@ During the design phase I sought to make use of [design thinking]( https://www.i
 
 ### Empathise
 To understand user needs I sought to gain empathetic insight into specific issues and needs of colleagues. In a team meeting and one to ones I asked a series of user research questions about existing behaviour, pain points, wants, diversity of requirements, specific feature requests and technical preferences. All responses were recorded on a whiteboard app.
+<p align="center">
+  <img src="./images/user_research_interview_reponses.png" alt="Whiteboard of interview questions and answers" width="700">
+</p>
+
  
 ### Define
 To define the problem clearly, I summarised responses in a generalised mind map, setting out the key things users say, think, do and feel. 
- 
+<p align="center">
+  <img src="./images/define_mind_map.png" alt="Mind map" width="700">
+</p>
+
 I identified three key user identities, who expressed differing ways of working, stressors and needs. 
- 
+<p align="center">
+  <img src="./images/upersona_jennie.png" alt="User persona" width="700">
+</p>
+<p align="center">
+  <img src="./images/upersona_jordi.png" alt="User persona" width="700">
+</p>
+<p align="center">
+  <img src="./images/upersona_juri.png" alt="User persona" width="700">
+</p>
  
 ### Ideate
 From this empathetic understanding I identified the key feature requirements and began to come up with ideas about how the solution might be developed by sketching out a couple of very simple diagrams.
- 
-
+<p align="center">
+  <img src="./images/ideate_key_features.png" alt="Setting out key features" width="700">
+</p>
+<p align="center">
+  <img src="./images/ideate_sketch.png" alt="Sketch of very basic app idea" width="600">
+</p>
  
 
 ### Prototype
 I created a [prototype app in Figma]( https://www.figma.com/design/uztRTxsJzu00kpS4OySQiY/Attendance-Planner?node-id=1-2&p=f&t=WnK5MaKJqCFH7HNM-0), first as a wireframe to set out the key navigational functionality and page layouts, then a full prototype including demonstration of all key functionality, and application of styling. 
- 
-
+<p align="center">
+  <img src="./images/prototype_wireframe.png" alt="Wireframe of the app" width="700">
+</p>
+<p align="center">
+  <img src="./images/prototype_full.png" alt="Prototype of the app" width="700">
+</p>
  
 
 ### Test
@@ -62,21 +85,29 @@ I chose to use a lightweight version of [Scrum Agile](https://www.scrum.org/reso
 
 ### Sprint planning
 To deliver post-planning phases, I planned sprints, setting out key issues and deliverables to be addressed in each. Typically, sprints are longer time-boxes, but for a compressed piece of work such as this, I opted for very short sprints.
- 
+<p align="center">
+  <img src="./images/plan_sprint_plan.png" alt="Sprints planned out in table form" width="650">
+</p>
 
 ### Project management tool
 I used Github projects to manage this work and created of a backlog of issues on a planning board. Each issue/ticket moves from column to column as it progresses. For example, the screenshot below shows the planner in its state as of 15th January 2026, with a backlog of issues that are still to be completed, some planned into the current sprint and ready to be picked up, several underway as part of this write up, none awaiting PR review and many already complete.
-
+<p align="center">
+  <img src="./images/pm_github_board.png" alt="GitHub planner board with issues" width="700">
+</p>
  
 
 
 ## Tickets
 
 To ensure all user requirements were delivered, I recorded each as issues. Initially these were high-level issues such as those used in the roadmap. I then added sub-issues to define specific tasks, deliverables and definitions of done. For example, the [Dev issue]( https://github.com/ElTigreNumero5/Sware-Eng-Summ1/issues/18) was broken down into nine sub-issues. Some sub-issues themselves required further refinement, for example, the [Create app front page](https://github.com/ElTigreNumero5/Sware-Eng-Summ1/issues/31) ticket is broken down into six further sub-issues required for that page, to cover the specific user requirements and app functionality. Issues are all available within the planner board.
- 
+<p align="center">
+  <img src="./images/tickets_ticket31.png" alt="GitHub issue or ticket" width="700">
+</p>
 
 Good ticket writing is important to capture and convey the right quantity and quality of information. All should include a descriptive title and a [detailed description](https://dev.to/usooldatascience/writing-great-github-issues-for-open-source-projects-a-newbies-guide-2c4d) of what the objective of the issue is such that anyone can understand the issue clearly. [Deliverables](https://www.tilburgsciencehub.com/topics/automation/version-control/start-git/write-good-issues/#provide-deliverables) (or acceptance criteria) should be included to provide explicit understanding of what needs to be provided to address the issue. Further, a definition of done provides a statement to determine whether an issue is ready to be closed. Different projects may use different styles of definitions of done for example [this definition](https://bdavison.napier.ac.uk/agile/github/dod/) includes all acceptance criteria plus a range of additional components. Labels allow useful categorisation and filtering of tickets, assignment tells collaborators who is working on an issue, projects show which project a ticket relates to, and relationships show parent or child issues. 
- 
+<p align="center">
+  <img src="./images/tickets_labels_etc.png" alt="GitHub issue or ticket" width="280">
+</p>
 
 
 ## MVP
@@ -93,10 +124,10 @@ I added a third page of attendance related outputs, including a key user require
 
 ## Test-driven development, continuous integration and continuous deployment
 
-[Test-driven development](https://learning.oreilly.com/library/view/test-driven-development/0321146530/) (TDD) relies on writing a failing unit test, then producing minimal code to pass the test, and repeating the process until the component is successfully built. For this product, TDD was used in the production of several of [the functions] https://github.com/ElTigreNumero5/Sware-Eng-Summ1/blob/4dee39a56ceee7fdbf26ae049c657e0756317278/functions.js). For example, the `attendPC` function is as follows.
+[Test-driven development](https://learning.oreilly.com/library/view/test-driven-development/0321146530/) (TDD) relies on writing a failing unit test, then producing minimal code to pass the test, and repeating the process until the component is successfully built. For this product, TDD was used in the production of several of [the functions](https://github.com/ElTigreNumero5/Sware-Eng-Summ1/blob/4dee39a56ceee7fdbf26ae049c657e0756317278/functions.js). For example, the `attendPC` function is as follows.
  
 
-I used [Node]( https://nodejs.org/en) and [Jest](https://jestjs.io/) to build and run [my testing suite]( https://github.com/ElTigreNumero5/Sware-Eng-Summ1/blob/4dee39a56ceee7fdbf26ae049c657e0756317278/__tests__/summ1.test.js). Initially there was no function and no code. The first JS test checks that a function called `attendPC` is defined. On first run, that test failed (was red). I wrote just enough code to pass the test (go green) - simply defining an empty function. The next test checks that the function outputs a number between zero and 100. This test passed by adding `return 10` to the function. Later tests increased complexity and specificity, and required earlier tests to be updated, for example when adding parameters to the function, some earlier tests failed and so needed editing. 
+I used [Node]( https://nodejs.org/en) and [Jest](https://jestjs.io/) to build and run [my testing suite](https://github.com/ElTigreNumero5/Sware-Eng-Summ1/blob/4dee39a56ceee7fdbf26ae049c657e0756317278/__tests__/summ1.test.js). Initially there was no function and no code. The first JS test checks that a function called `attendPC` is defined. On first run, that test failed (was red). I wrote just enough code to pass the test (go green) - simply defining an empty function. The next test checks that the function outputs a number between zero and 100. This test passed by adding `return 10` to the function. Later tests increased complexity and specificity, and required earlier tests to be updated, for example when adding parameters to the function, some earlier tests failed and so needed editing. 
  
 
 The test suite is minimal and will continue to be updated e.g. to test variable inputs and as the app evolves, but for the MVP where most test values are currently hardcoded, all tests pass and the code can be deemed to be usable.
